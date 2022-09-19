@@ -32,7 +32,17 @@ newProduct.getAllInfo();
 
 Console.WriteLine("vuoi modificare il prodotto?[si/no]");
 string choice = Console.ReadLine();
-if(choice == "si")
+
+if (choice == "si")
+{
+    modifyProduct();
+}
+else
+{
+    newProduct.getAllInfo();
+}
+
+void modifyProduct()
 {
     Console.WriteLine("Cosa vuoi modificare?(nome,descrizione,prezzo)");
     string answer = Console.ReadLine();
@@ -58,5 +68,16 @@ if(choice == "si")
             newProduct.setPrice(prezzoInsert);
             newProduct.getAllInfo();
             break;
+    }
+
+    Console.WriteLine("Vuoi modificare ancora?[si,no]");
+    string modifyChoice = Console.ReadLine();
+    if (modifyChoice == "si")
+    {
+        modifyProduct();
+    }
+    else
+    {
+        newProduct.getAllInfo();
     }
 }

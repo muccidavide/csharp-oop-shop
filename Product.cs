@@ -86,6 +86,7 @@ class Product
     {
         price = getPrice();
 
+        Console.WriteLine("Il Prodotto inserito ha le seguenti caratteristiche:");
         Console.WriteLine($"Nome: {getName()}");
         Console.WriteLine($"Full name: {getFullName()}");
         Console.WriteLine($"Descrizione: {getDescription()}");
