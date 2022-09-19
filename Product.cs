@@ -39,6 +39,10 @@ class Product
     }
 
     //GETTERS
+    public int GetCode()
+    {
+        return code;
+    }
 
     public string GetFullCode()
     {

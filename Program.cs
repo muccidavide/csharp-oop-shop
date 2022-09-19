@@ -22,9 +22,6 @@ Buon lavoro!*/
 
 using System.Diagnostics.Metrics;
 
-
-
-
 Product newProduct = new Product("frigo", "frigo dotato di tutte le funzioinalità necessarie", 132);
 newProduct.getAllInfo();
 
