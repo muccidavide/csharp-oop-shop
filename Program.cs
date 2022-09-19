@@ -22,24 +22,41 @@ Buon lavoro!*/
 
 using System.Diagnostics.Metrics;
 
-// MANCA PARTE DI STORAGE DEI PRODOTTI
-Product[] allProducts = new Product[10];
 
 
-Console.WriteLine("Vuoi inserire prodotto?[si/no]");
-string answer = Console.ReadLine();
 
-switch (answer)
+Product newProduct = new Product("frigo", "frigo dotato di tutte le funzioinalità necessarie", 132);
+newProduct.getAllInfo();
+
+// Interazione Utente
+
+Console.WriteLine("vuoi modificare il prodotto?[si/no]");
+string choice = Console.ReadLine();
+if(choice == "si")
 {
-    case "si":
-        Product newProduct = new Product();
-        newProduct.getAllInfo();
-        break;
+    Console.WriteLine("Cosa vuoi modificare?(nome,descrizione,prezzo)");
+    string answer = Console.ReadLine();
+    switch (answer)
+    {
+        case "nome":
+            Console.WriteLine("Inserisci il nome");
+            string nameInsert = Console.ReadLine();
+            newProduct.setName(nameInsert);
+            newProduct.getAllInfo();
+            break;
 
-    case "no":
+        case "descrizione":
+            Console.WriteLine("Inserisci la descrizione");
+            string descriptionInsert = Console.ReadLine();
+            newProduct.setDescription(descriptionInsert);
+            newProduct.getAllInfo();
+            break;
 
-       
-        Console.WriteLine("nessun prodotto creato");
-        break;
-
+        case "prezzo":
+            Console.WriteLine("Inserisci il prezzo");
+            decimal prezzoInsert = Convert.ToDecimal(Console.ReadLine());
+            newProduct.setPrice(prezzoInsert);
+            newProduct.getAllInfo();
+            break;
+    }
 }

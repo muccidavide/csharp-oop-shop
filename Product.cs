@@ -27,29 +27,23 @@ class Product
     string description; 
     decimal price;
     decimal iva = 20;
-    int counter;
 
-    public Product()
+    public Product(string name, string description, decimal price)
     {
         var random = new Random();
         code = random.Next(0, 100);
-        name = setName();
-        description = setDescription();
-        price = setPrice();
-
+        this.name = name;
+        this.description = description;
+        this.price = price;
 
     }
+
+    //GETTERS
 
     public string GetFullCode()
     {
         string fullCode = code.ToString().PadLeft(10, '0');
         return fullCode;
-    }
-
-    public string setName()
-    {
-        Console.WriteLine("Inserisci nome prodotto");
-        return name = Console.ReadLine();
     }
 
     public string getName()
@@ -63,23 +57,11 @@ class Product
         return fullName;
     }
 
-    public string setDescription()
-    {
-        Console.WriteLine("Inserisci descrizione prodotto");
-        description = Console.ReadLine();
-        return description;
-    }
+   
 
     public string getDescription()
     {
         return description;
-    }
-
-    public decimal setPrice()
-    {
-        Console.WriteLine("Inserisci prezzo prodotto");
-        price = Convert.ToDecimal(Console.ReadLine());
-        return price;
     }
 
     public decimal getPrice()
@@ -100,7 +82,6 @@ class Product
 
         return price;
     }
-
     public void getAllInfo()
     {
         price = getPrice();
@@ -111,6 +92,26 @@ class Product
         Console.WriteLine($"Prezzo: {price}");
         Console.WriteLine($"Full code: {GetFullCode()}");
 
+    }
+
+    // SETTERS
+    public void setName(string name)
+    {
+        this.name = name;
+
+    }
+
+    public void setDescription(string description)
+    {
+
+        this.description = description;
+
+    }
+
+    public decimal setPrice(decimal price)
+    {
+        this.price = price;
+        return price;
     }
 
 }
