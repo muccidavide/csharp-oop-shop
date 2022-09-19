@@ -8,7 +8,7 @@ prezzo
 iva
 Usate opportunamente i livelli di accesso (public, private):
 i costruttori,
-i metodi getter e setter
+i metodi getter e Setter
 eventuali altri metodi di “utilità” per fare in modo che:
 alla creazione di un nuovo prodotto il codice sia valorizzato con un numero random
 Il codice prodotto sia accessibile solo in lettura
@@ -23,7 +23,7 @@ Buon lavoro!*/
 using System.Diagnostics.Metrics;
 
 Product newProduct = new Product("frigo", "frigo dotato di tutte le funzioinalità necessarie", 132);
-newProduct.getAllInfo();
+newProduct.GetAllInfo();
 
 // Interazione Utente
 
@@ -36,7 +36,7 @@ if (choice == "si")
 }
 else
 {
-    newProduct.getAllInfo();
+    newProduct.GetAllInfo();
 }
 
 void modifyProduct()
@@ -48,22 +48,22 @@ void modifyProduct()
         case "nome":
             Console.WriteLine("Inserisci il nome");
             string nameInsert = Console.ReadLine();
-            newProduct.setName(nameInsert);
-            newProduct.getAllInfo();
+            newProduct.SetName(nameInsert);
+            newProduct.GetAllInfo();
             break;
 
         case "descrizione":
             Console.WriteLine("Inserisci la descrizione");
             string descriptionInsert = Console.ReadLine();
-            newProduct.setDescription(descriptionInsert);
-            newProduct.getAllInfo();
+            newProduct.SetDescription(descriptionInsert);
+            newProduct.GetAllInfo();
             break;
 
         case "prezzo":
             Console.WriteLine("Inserisci il prezzo");
             decimal prezzoInsert = Convert.ToDecimal(Console.ReadLine());
-            newProduct.setPrice(prezzoInsert);
-            newProduct.getAllInfo();
+            newProduct.SetPrice(prezzoInsert);
+            newProduct.GetAllInfo();
             break;
     }
 
@@ -75,6 +75,6 @@ void modifyProduct()
     }
     else
     {
-        newProduct.getAllInfo();
+        newProduct.GetAllInfo();
     }
 }

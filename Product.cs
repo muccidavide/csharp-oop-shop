@@ -20,11 +20,13 @@ BONUS: create un metodo che restituisca il codice con un pad left di 0 per arriv
 Buon lavoro!*/
 
 
+using System.Diagnostics;
+
 class Product
 {
     int code;
     string name;
-    string description; 
+    string description;
     decimal price;
     decimal iva = 20;
 
@@ -50,70 +52,64 @@ class Product
         return fullCode;
     }
 
-    public string getName()
+    public string GetName()
     {
         return name;
     }
 
-    public string getFullName()
+    public string GetFullName()
     {
         string fullName = code + " - " + name;
         return fullName;
     }
 
-   
 
-    public string getDescription()
+
+    public string GetDescription()
     {
         return description;
     }
 
-    public decimal getPrice()
+    public decimal GetPrice()
     {
-        Console.WriteLine($"Vuoi vedere il risultato con o senza IVA({iva}%)?");
-         string answerUser= Console.ReadLine();
-
-        switch (answerUser)
-        {
-            case "con":
-                decimal totalPrice = price + (price * iva / 100);
-                return totalPrice;
-
-            case "senza":
-                return price;
-                
-        };
-
         return price;
     }
-    public void getAllInfo()
+
+    public decimal GetFullPrice()
     {
-        price = getPrice();
+        decimal totalPrice = price + (price * iva / 100);
+        return totalPrice;
+
+    }
+    public void GetAllInfo()
+    {
+        price = GetPrice();
 
         Console.WriteLine("Il Prodotto inserito ha le seguenti caratteristiche:");
-        Console.WriteLine($"Nome: {getName()}");
-        Console.WriteLine($"Full name: {getFullName()}");
-        Console.WriteLine($"Descrizione: {getDescription()}");
-        Console.WriteLine($"Prezzo: {price}");
+        Console.WriteLine($"Nome: {GetName()}");
+        Console.WriteLine($"Full name: {GetFullName()}");
+        Console.WriteLine($"Descrizione: {GetDescription()}");
+        Console.WriteLine($"Prezzo: {GetPrice()}");
+        Console.WriteLine($"Prezzo con IVA: {GetFullPrice()}");
         Console.WriteLine($"Full code: {GetFullCode()}");
 
     }
 
     // SETTERS
-    public void setName(string name)
+    public void SetName(string name)
     {
         this.name = name;
 
     }
 
-    public void setDescription(string description)
+    public void SetDescription(string description)
     {
 
         this.description = description;
 
     }
 
-    public decimal setPrice(decimal price)
+    public decimal SetPrice(decimal price)
     {
         this.price = price;
         return price;
