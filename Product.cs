@@ -1,118 +1,99 @@
-﻿// See https://aka.ms/new-console-template for more information
-/*Creare una classe Prodotto che gestisce i prodotti dello shop.
-Un prodotto è caratterizzato da:
-codice(numero intero)
-nome
-descrizione
-prezzo
-iva
-Usate opportunamente i livelli di accesso (public, private):
-i costruttori,
-i metodi getter e setter
-eventuali altri metodi di “utilità” per fare in modo che:
-alla creazione di un nuovo prodotto il codice sia valorizzato con un numero random
-Il codice prodotto sia accessibile solo in lettura
-Gli altri attributi siano accessibili sia in lettura che in scrittura
-Il prodotto esponga sia un metodo per avere il prezzo base che uno per avere il prezzo comprensivo di iva
-Il prodotto esponga un metodo per avere il nome esteso, ottenuto concatenando codice + nome
-Nella vostro programma principale, testate tutte le funzionalità della classe Prodotto.
-BONUS: create un metodo che restituisca il codice con un pad left di 0 per arrivare a 8 caratteri (ad esempio codice 91 diventa 00000091, mentre codice 123445567 resta come è)
-Buon lavoro!*/
-
-
-using System.Diagnostics;
-
-class Product
+﻿
+public abstract class Product 
 {
     int code;
     string name;
     string description;
+    string countryOfOrigin;
     decimal price;
     decimal iva = 20;
 
-    public Product(string name, string description, decimal price)
+    public Product(string name, string description, decimal price, string countryOfOrigin)
     {
         var random = new Random();
         code = random.Next(0, 100);
         this.name = name;
         this.description = description;
         this.price = price;
-
+        this.countryOfOrigin = countryOfOrigin;
     }
 
-    //GETTERS
-    public int GetCode()
+    protected abstract int setQuantity();
+
+
+}
+
+public abstract class Food : Product
+{
+    DateOnly expirationDate { get; set; }
+    int quantity;
+    bool isFrozen;
+
+    public Food(
+        string name, 
+        string description, 
+        decimal price,
+        string countryOfOrigin,
+        DateOnly expirationDate, 
+        bool isFrozen) : 
+
+        base(name, description, price,countryOfOrigin)
     {
-        return code;
+        expirationDate = this.expirationDate;
+        this.isFrozen = isFrozen;
     }
 
-    public string GetFullCode()
+    protected override int setQuantity()
     {
-        string fullCode = code.ToString().PadLeft(10, '0');
-        return fullCode;
+        throw new NotImplementedException();
     }
 
-    public string GetName()
+}
+
+ public class Appereance : Product
+{
+    string energeticClass { get; set; }
+    public Appereance(
+        string name, 
+        string description, 
+        decimal price, 
+        string countryOfOrigin, 
+        string energeticClass ) : 
+
+        base(name, description, price, countryOfOrigin)
     {
-        return name;
+        this.energeticClass = energeticClass;
     }
 
-    public string GetFullName()
+    protected override int setQuantity()
     {
-        string fullName = code + " - " + name;
-        return fullName;
+        throw new NotImplementedException();
     }
+}
 
+public class Water : Food
+{
+    public int Liters { get; set; }
+    public decimal PH { get; set; }
+    public string Wellspring { get; set; }
 
-
-    public string GetDescription()
+    public Water(
+        string name, 
+        string description, 
+        decimal price, 
+        string countryOfOrigin, 
+        DateOnly expirationDate, 
+        bool isFrozen,
+        int Liters,
+        decimal PH,
+        string Wellspring) : 
+        base(name, description, price, countryOfOrigin, expirationDate, isFrozen)
     {
-        return description;
-    }
-
-    public decimal GetPrice()
-    {
-        return price;
-    }
-
-    public decimal GetFullPrice()
-    {
-        decimal totalPrice = price + (price * iva / 100);
-        return totalPrice;
-
-    }
-    public void GetAllInfo()
-    {
-        price = GetPrice();
-
-        Console.WriteLine("Il Prodotto inserito ha le seguenti caratteristiche:");
-        Console.WriteLine($"Nome: {GetName()}");
-        Console.WriteLine($"Full name: {GetFullName()}");
-        Console.WriteLine($"Descrizione: {GetDescription()}");
-        Console.WriteLine($"Prezzo: {GetPrice()}");
-        Console.WriteLine($"Prezzo con IVA: {GetFullPrice()}");
-        Console.WriteLine($"Full code: {GetFullCode()}");
+        this.Liters = Liters;
+        this.PH = PH;
+        this.Wellspring = Wellspring;
 
     }
 
-    // SETTERS
-    public void SetName(string name)
-    {
-        this.name = name;
-
-    }
-
-    public void SetDescription(string description)
-    {
-
-        this.description = description;
-
-    }
-
-    public decimal SetPrice(decimal price)
-    {
-        this.price = price;
-        return price;
-    }
-
+    
 }
