@@ -5,7 +5,7 @@ public abstract class Food : Product
     bool isFrozen;
 
     public Food(
-        string name, 
+        string name , 
         string description, 
         decimal price,
         string countryOfOrigin,
@@ -38,4 +38,11 @@ public abstract class Food : Product
         
     }
 
+    public override void PrintInfo()
+    {
+        Console.WriteLine("Nome: " + this.name);
+        Console.WriteLine("Prezzo: " + this.getTotalPrice() + "euro");
+        Console.WriteLine("Scadenza tra: " + getLeftDays() + " giorni" );
+        Console.WriteLine();
+    }
 }

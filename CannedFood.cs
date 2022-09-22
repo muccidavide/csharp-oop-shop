@@ -21,4 +21,5 @@ public class CannedFood : Food
         this.boxMaterial = boxMaterial;
         this.isVacuumPacked = isVacuumPacked;
     }
+
 }

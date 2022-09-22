@@ -8,8 +8,8 @@ istanze: [Elettrodomestico:LAvatrice, Frigo], [Acqua: Bottiglia Rocchetta, mela,
 
  */
 
-Food acquaRocchettaSmall = new Water("Acqua minerale Rocchetta", "Bottiglia di acqua minerale Rocchetta da 1 L", 0.50m, "Italia" ,new DateOnly(2026, 1, 22),500, false, 1, 7, "Monte Bianco");
-Food acquaRocchettaBig = new Water("Acqua minerale Rocchetta", "Bottiglia di acqua minerale Rocchetta da 2 L", 0.50m, "Italia", new DateOnly(2028, 3, 12), 1000,false, 1, 7, "Monte Rosa");
+Water acquaRocchettaSmall = new Water("Acqua minerale Rocchetta", "Bottiglia di acqua minerale Rocchetta da 1 L", 0.50m, "Italia" ,new DateOnly(2026, 1, 22),500, false, 1, 7, "Monte Bianco");
+Water acquaRocchettaBig = new Water("Acqua minerale Rocchetta", "Bottiglia di acqua minerale Rocchetta da 2 L", 0.50m, "Italia", new DateOnly(2028, 3, 12), 1000,false, 3, 7, "Monte Rosa");
 
 FruitBag meleRosse = new FruitBag("Mela Melina", "La mela melina è la piu buona", 0.23m, "Italia", new DateOnly(2022, 10, 13), 300 , false, 4);
 FruitBag pere = new FruitBag("Pera Melina", "La pera perina è la piu buona", 0.33m, "Spagna", new DateOnly(2022, 10, 3),400, false, 8);
@@ -24,7 +24,16 @@ Appereance fornoNemico = new Appereance("Forno Nemico", "il Forno nemico è il f
 Console.WriteLine(acquaRocchettaBig.getTotalPrice());
 Console.WriteLine(acquaRocchettaBig.getLeftDays());
 
+acquaRocchettaBig.Refill();
+acquaRocchettaBig.drinkSome();
+acquaRocchettaBig.Refill();
+
 pere.EatAFruit();
+
+pere.PrintInfo();
+frigoAmico.PrintInfo();
+
+Console.WriteLine(Water.ConvertToGallons(acquaRocchettaBig.Liters));
 
 
 

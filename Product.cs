@@ -2,7 +2,7 @@
 public abstract class Product 
 {
     int code;
-    string name;
+    protected string name;
     string description;
     string countryOfOrigin;
     decimal price;
@@ -30,5 +30,12 @@ public abstract class Product
     {
         decimal fidelityPrice = price - (price * 0.1m);
         return fidelityPrice;
+    }
+
+    public virtual void PrintInfo()
+    {
+        Console.WriteLine("Nome: " + this.name);
+        Console.WriteLine("Prezzo: " + this.getTotalPrice() + "euro");
+        Console.WriteLine();
     }
 }
