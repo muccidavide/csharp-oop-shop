@@ -18,16 +18,13 @@ public abstract class Product
         this.countryOfOrigin = countryOfOrigin;
     }
 
-    protected abstract int setQuantity();
-
-
 }
 
 public abstract class Food : Product
 {
     DateOnly expirationDate { get; set; }
-    int quantity;
     bool isFrozen;
+    protected int quantity;
 
     public Food(
         string name, 
@@ -35,17 +32,13 @@ public abstract class Food : Product
         decimal price,
         string countryOfOrigin,
         DateOnly expirationDate, 
-        bool isFrozen) : 
+        bool isFrozen, int quantity) : 
 
         base(name, description, price,countryOfOrigin)
     {
         expirationDate = this.expirationDate;
         this.isFrozen = isFrozen;
-    }
-
-    protected override int setQuantity()
-    {
-        throw new NotImplementedException();
+        this.quantity = quantity;
     }
 
 }
@@ -64,11 +57,6 @@ public abstract class Food : Product
     {
         this.energeticClass = energeticClass;
     }
-
-    protected override int setQuantity()
-    {
-        throw new NotImplementedException();
-    }
 }
 
 public class Water : Food
@@ -84,10 +72,12 @@ public class Water : Food
         string countryOfOrigin, 
         DateOnly expirationDate, 
         bool isFrozen,
+        int quantity,
         int Liters,
         decimal PH,
-        string Wellspring) : 
-        base(name, description, price, countryOfOrigin, expirationDate, isFrozen)
+        string Wellspring
+        ) : 
+        base(name, description, price, countryOfOrigin, expirationDate, isFrozen,quantity)
     {
         this.Liters = Liters;
         this.PH = PH;
@@ -96,4 +86,54 @@ public class Water : Food
     }
 
     
+}
+
+public class FruitBag : Food
+{
+
+    public FruitBag(
+        string name, 
+        string description, 
+        decimal price, 
+        string countryOfOrigin, 
+        DateOnly expirationDate, 
+        bool isFrozen, 
+        int quantity) :
+        base(name, description, price, countryOfOrigin, expirationDate, isFrozen, quantity)
+    {
+        if(quantity > 5)
+        {
+            base.quantity = 5;
+            Console.WriteLine("Quantità di frutta supera le dimensioni del sacchetto (max 5 frutti a sacchetto)");
+        }
+        else
+        {
+            base.quantity = quantity;
+        }
+
+    }
+
+}
+
+public class CannedFood : Food
+{
+    string boxMaterial;
+    bool isVacuumPacked;
+
+    public CannedFood(
+        string name, 
+        string description, 
+        decimal price, 
+        string countryOfOrigin, 
+        DateOnly expirationDate, 
+        bool isFrozen, 
+        int quantity,
+        string boxMaterial,
+        bool isVacuumPacked) : 
+        base(name, description, price, countryOfOrigin, expirationDate, isFrozen, quantity)
+    {
+        this.boxMaterial = boxMaterial;
+        this.isVacuumPacked = isVacuumPacked;
+
+    }
 }
